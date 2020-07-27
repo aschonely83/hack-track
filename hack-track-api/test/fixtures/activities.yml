@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tee_time: MyString
+  hole_numb: MyString
+  tee_marker: MyString
+  par: MyString
+  score: MyString
+
+two:
+  tee_time: MyString
+  hole_numb: MyString
+  tee_marker: MyString
+  par: MyString
+  score: MyString
