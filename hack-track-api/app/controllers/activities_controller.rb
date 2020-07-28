@@ -7,9 +7,6 @@ class ActivitiesController < ApplicationController
     
   def show
     activity = Activity.find(params[:id])
-    options = {
-      include: [:player, :course]
-    }
-    render json: ActivitySerializer.new(activity, options)
+    render json: ActivitySerializer.new(activity)
   end
 end
