@@ -8,7 +8,7 @@ class PlayersController < ApplicationController
   def create
     player = Player.new(player_params)
     if player.save
-      render json: player, status :accepted
+      render json: player, status: :accepted
     else
         render json: {errors: player.errors.full_message}, status: :unprocessible_entity
     end
