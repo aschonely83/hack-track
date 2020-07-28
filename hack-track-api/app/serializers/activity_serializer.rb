@@ -4,3 +4,4 @@ class ActivitySerializer
   belongs_to :player
   belongs_to :course  
 end
+#, :player_id, :course_id
