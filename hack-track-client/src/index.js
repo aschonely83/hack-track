@@ -1,12 +1,4 @@
-const BASE_URL = "http://localhost:3000"
-const PLAYERS_URL = `${BASE_URL}/players`
+const app = new AppContainer();
 
-document.addEventListener("DOMContentLoaded", () => {
-  getPlayers()    
-})
+app.renderPlayers();
 
-function getPlayers() {
-  fetch(PLAYERS_URL)
-  .then(resp => resp.json())
-  .then(players => console.log(players))    
-}
