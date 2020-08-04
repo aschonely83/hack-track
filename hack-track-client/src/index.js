@@ -1,98 +1,71 @@
 BASE_URL = "http://localhost:3000"
-PLAYERS_URL = `${BASE_URL}/players`
-COURSES_URL = `${BASE_URL}/courses`
-
+ACTIVITIES_URL = `${BASE_URL}/activities`
 
 document.addEventListener("DOMContentLoaded", () => {
-  getPlayers();
-  renderPlayers();
-  getCourses();
-  renderCourses();
+  getActivities()
+
  
-   
+ 
 })
  
-
-function getPlayers() {
-  return fetch(PLAYERS_URL )
-  .then(resp => resp.json())
-  .catch(err => alert(err));
-}    
-   
-function renderPlayers() {
-  this.getPlayers()
-  .then(players => {
-   players.data.forEach(player => {
-   buildPlayersList(player)
-   })
- });
-}
-     
-function buildPlayersList(player) {
-  const div = document.createElement('div')
-  const div1 = document.createElement('div')
-  const p = document.createElement('p')
-     
-  const playerList = document.getElementById('player-list')
-  playerList.append(div)
-  div.append(div1)
-  div.append(p)
-  div.setAttribute('class', "player-card")
-  div.setAttribute("data-name", player.attributes.name)
-  div.setAttribute("data-id", `${player.id}`)
-  div1.setAttribute('class', "player-name")
-  p.setAttribute('class', "player-name")
-  p.textContent = `${player.id} ${player.attributes.name}`
+function getActivities() {
+  fetch(ACTIVITIES_URL)
+  .then(resp => resp.json())    
+  .then(activities => {
+    activities.data.forEach(activity => {
+    
+      const activitiesMarkup = `
+       <div data-id=${activity.id}>
+        <p>Name: ${activity.attributes.player.name}</p>
+        <p>Course Name: ${activity.attributes.course.name}</p>
+         
+        <label for="holes">Choose a hole:</label>
+        <select name="holes" id="holes">
+          <option value="hole-">
+          Tee Time: ${activity.attributes.tee_time}
+          # ${activity.attributes.hole_numb} 
+          Tees: ${activity.attributes.tee_marker}
+          Par: ${activity.attributes.par}
+          Score: ${activity.attributes.score}</option>
+        </select>
+      </div><br>
+        <input type="text" name="name" placeholder="Add Hole">
+        <button type="submit id="add-hole">Add Hole</button>
+      `
+       document.querySelector('#activity-container').innerHTML += activitiesMarkup
+    })
+  })
 }
 
-function createPlayer(event) {
+function createActivity(event) {
   event.preventDefault();
   const form = event.target;
-  fetch(PLAYERS_URL , {
+  fetch(ACTIVITIES_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-     },
-    body: JSON.stringify ( {
-      name: form.name.value
-     })
-   })
+    },
+    body: JSON.stringify({
+      tee_time: form.tee_time.value,
+      hole_numb: form.hole_numb.value,
+      tee_marker: form.tee_marker.value,
+      par: form.par.value,
+      score: form.score.value
+    })  
+  })
   .then(resp => resp.json())
   .then(data => data)
-  .then(location.reload())
+  .then(location.reload());
 }
-   
-  function getCourses() {
-    return fetch(COURSES_URL)
-    .then(resp => resp.json())
-    .catch(err => alert(err));
-    }    
-  
-  function renderCourses() {
-     getCourses()
-    .then(courses => {
-      courses.data.forEach(course => {
-      buildCoursesList(course)
-      })
-    });
-  }
-    
-  function buildCoursesList(course) {
-    const div = document.createElement('div')
-    const div1 = document.createElement('div')
-    const p = document.createElement('p')
-    
-    const courseList = document.getElementById('course-list')
-    courseList.append(div)
-    div.append(div1)
-    div.append(p)
 
-    div.setAttribute('class', "course-card")
-    div.setAttribute("data-name", course.attributes.name)
-    div.setAttribute("data-id", `${course.id}`)
-    div1.setAttribute('class', "course-name")
-    p.setAttribute('class', "course-name")
-    p.textContent = `${course.id} ${course.attributes.name}`
+function addOptions() {
+  let x = document.getElementById("holes");
+  if (x.selectedIndex >= 0) {
+    let option = document.createElement("option");
+    option.text = "";
+    let sel = x.options[x.selectedIndex];
+    x.add(option, sel);
+}
+}
 
-  }
