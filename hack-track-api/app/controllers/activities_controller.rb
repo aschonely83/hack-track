@@ -11,17 +11,20 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    activity = Activity.new(activity_params)
-    if activity.save
-      render json: ActivitySerializer.new(activity), status: :accepted
-    else
-      render json: {errors: activity.errors.full_messages}, status: :unprocessible_entity 
+    if params[:course_id] && params[:player_id]
+      player = Player.find(params[:player_id])
+      course = Course.find(params[:course_id])
+      activity = course.activities.build(activity_params)
+      #binding.pry
+      if activity.save
+        render json: ActivitySerializer.new(activity)
+      end
     end
   end
 
   private
 
   def activity_params
-    params.require(:activity).permit(:tee_time, :hole_numb, :tee_marker, :par, :score, :player_id, :course_id)
+    params.permit(:tee_time, :hole_numb, :tee_marker, :par, :score, :course_id, :player_id)
   end
 end
