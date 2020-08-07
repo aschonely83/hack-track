@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderPlayers();
   getCourses();
   renderCourses();
-  getActivities();
 })
 
 function getPlayers() {
@@ -52,6 +51,7 @@ function renderCourses() {
   .then(courses => {
     courses.data.forEach(course => {
     buildCoursesList(course)
+    getActivities();
     })
   });
 }
@@ -82,14 +82,10 @@ function getActivities() {
   .then(resp => resp.json())    
   .then(activities => {
     activities.data.forEach(activity => {
-      
       const div = document.createElement('div')
       const div1 = document.createElement('div')
       const p = document.createElement('p')  
-      
-      const activityList = document.getElementById('activity-div').dataset.id
-      debugger;
-      activityList.append(div)
+      const id = activity.attributes.course_id
       div.append(div1)
       div.append(p)
       div.setAttribute('class', "activity-card")
@@ -99,7 +95,9 @@ function getActivities() {
         Tees: ${activity.attributes.tee_marker}
         Par: ${activity.attributes.par}
         Score: ${activity.attributes.score}`
-        
+    let divId = `${activity.attributes.course_id}`
+    const activityList = document.querySelector(`div#activity-div[data-id="${divId}"`)
+    activityList.append(div)
    })
  })
 }
