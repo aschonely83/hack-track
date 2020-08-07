@@ -12,13 +12,46 @@
   </header>
   
   <div class="flex-container">
-    <div id="activity-container">
-     
+    <div class="container">
+      <form id="add-player-form">
+        <div class="input-field"> 
+          <label for="name">Name</label>
+          <input type="text" id="title" name="player-name">
+          <input type="submit" value="add player" class="player-btn">
+        </div>
+      </form> 
+      <br>
+      <div id="player-list"></div>
+    </div>
+
+    <div class="container">
+      <form id="add-course-form">
+        <div class="input-field"> 
+          <label for="name">Course</label>
+          <input type="text" id="title" name="course-name">
+          <input type="submit" value="add course" class="course-btn">
+        </div>
+      </form> 
+    <br>
+      <div id="course-list"></div>
+    </div>
+
+    <div class="container">
+      <form id="add-activity-form">
+        <div class="input-field"> 
+          <label for="name">Hole</label>
+          <input type="text" id="title" name="hole">
+          <input type="submit" value="add hole" class="hole-btn">
+        </div>
+      </form> 
+      <br>
+      <div id="activity-list"></div>
+    </div>       
   </div>
  
 </body>
-<script src="./src/player.js"></script>
-<script src="./src/course.js"></script>
-<script src="./src/activity.js"></script>
-<script src="./src/index.js"></script> 
+  <script src="./src/player.js"></script>
+  <script src="./src/course.js"></script>
+  <script src="./src/activity.js"></script>
+  <script src="./src/index.js"></script> 
 </html>
