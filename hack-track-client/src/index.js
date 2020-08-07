@@ -2,11 +2,6 @@ BASE_URL = "http://localhost:3000"
 PLAYERS_URL = `${BASE_URL}/players`
 COURSES_URL = `${BASE_URL}/courses`
 
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
   getPlayers();
   renderPlayers();
@@ -14,9 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCourses();
   getActivities();
 })
-
-
-
 
 function getPlayers() {
   return fetch(PLAYERS_URL )
