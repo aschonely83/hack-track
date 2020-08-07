@@ -51,8 +51,8 @@ function renderCourses() {
   .then(courses => {
     courses.data.forEach(course => {
     buildCoursesList(course)
+   })
     getActivities();
-    })
   });
 }
   
@@ -85,7 +85,7 @@ function getActivities() {
       const div = document.createElement('div')
       const div1 = document.createElement('div')
       const p = document.createElement('p')  
-      const id = activity.attributes.course_id
+      
       div.append(div1)
       div.append(p)
       div.setAttribute('class', "activity-card")
