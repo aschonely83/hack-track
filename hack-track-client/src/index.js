@@ -131,7 +131,6 @@ function getActivities() {
         Par: ${activity.attributes.par}
         Score: ${activity.attributes.score}`
     let divId = `${activity.attributes.course_id}`
-    let playID = `${activity.attributes.player_id}`
     const activityList = document.querySelector(`div#activity-div[data-id="${divId}"]`)
     activityList.append(div)
    })
