@@ -11,8 +11,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    if params[:course_id] && params[:player_id]
-      player = Player.find(params[:player_id])
+    if params[:course_id]
       course = Course.find(params[:course_id])
       activity = course.activities.build(activity_params)
       #binding.pry
@@ -25,6 +24,6 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.permit(:tee_time, :hole_numb, :tee_marker, :par, :score, :course_id, :player_id)
+    params.permit(:tee_time, :hole_numb, :tee_marker, :par, :score, :course_id)
   end
 end
