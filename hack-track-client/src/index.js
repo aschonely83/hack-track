@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderPlayers();
   getCourses();
   renderCourses();
+ 
 })
 
 function getPlayers() {
@@ -84,10 +85,44 @@ function getActivities() {
     activities.data.forEach(activity => {
       const div = document.createElement('div')
       const div1 = document.createElement('div')
-      const p = document.createElement('p')  
+      const p = document.createElement('p')
       
+
+      const holeForm = document.createElement('form')
+      holeForm.classList.add("hole-form")
+      const timeInput = document.createElement('input')
+      timeInput.type = "text"
+      timeInput.name = "time_input"
+      timeInput.id = "time-input"
+      timeInput.placeholder = "Enter Tee Time"
+      const numbInput = document.createElement('input')
+      numbInput.type = "text"
+      numbInput.name = "numb_input"
+      numbInput.id = "numb-input"
+      numbInput.placeholder = "Enter Hole #"
+      const markerInput = document.createElement('input')
+      markerInput.type = "text"
+      markerInput.name = "marker_input"
+      markerInput.id = "marker-input"
+      markerInput.placeholder = "Enter Tee Marker"
+      const parInput = document.createElement('input')
+      parInput.type = "par"
+      parInput.name = "par_input"
+      parInput.id = "par-input"
+      parInput.placeholder = "Enter Par"
+      const scoreInput = document.createElement('input')
+      scoreInput.type = "text"
+      scoreInput.name = "score_input"
+      scoreInput.id = "score-input"
+      scoreInput.placeholder = "Enter Score"
+      const submitBtn = document.createElement('button')
+      submitBtn.type = "submit"
+      submitBtn.classList.add("add")
+      submitBtn.textContent = "Add Hole"
+      holeForm.append(timeInput, numbInput, markerInput, parInput, scoreInput, submitBtn)
+            
       div.append(div1)
-      div.append(p)
+      div.append(p,holeForm)
       div.setAttribute('class', "activity-card")
       div.setAttribute("data-id", `${activity.id}`)
       p.textContent = `Tee Time: ${activity.attributes.tee_time}
@@ -96,8 +131,14 @@ function getActivities() {
         Par: ${activity.attributes.par}
         Score: ${activity.attributes.score}`
     let divId = `${activity.attributes.course_id}`
-    const activityList = document.querySelector(`div#activity-div[data-id="${divId}"`)
+    let playID = `${activity.attributes.player_id}`
+    const activityList = document.querySelector(`div#activity-div[data-id="${divId}"]`)
     activityList.append(div)
    })
  })
+}
+
+function createActivities(e) {
+  e.preventDefault();
+  console.log(e) 
 }
