@@ -7,7 +7,7 @@ class Activity {
     this.par = data.par
     this.score = data.score
     this .course_id = data.course_id
-    this.player_id = data.player_id
+    //this.player_id = data.player_id
     Activity.call.push(this)
   }    
 }

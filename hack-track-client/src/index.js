@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderPlayers();
   getCourses();
   renderCourses();
- 
+  
+  
 })
 
 function getPlayers() {
@@ -89,7 +90,7 @@ function getActivities() {
       
 
       const holeForm = document.createElement('form')
-      holeForm.classList.add("hole-form")
+      holeForm.id = "hole-form"
       const timeInput = document.createElement('input')
       timeInput.type = "text"
       timeInput.name = "time_input"
@@ -137,7 +138,23 @@ function getActivities() {
  })
 }
 
-function createActivities(e) {
-  e.preventDefault();
-  console.log(e) 
+function createActivities(id, event) {
+  const form = event.target
+  fetch(`http://localhost:3000"/courses/${id}/activities`, {
+    method: "POST",
+    headers: {
+      "Content-Type": 'application/json',
+      "Accept": 'application/json'
+    },
+    body: JSON.stringify({
+      tee_time: form.time_input.value,
+      hole_numb: form.numb_input.value,
+      tee_marker: form.marker_input.value,
+      par: form.par_input.value,
+      score: form.score_input.value
+    })
+  })
+  .then(resp => resp.json())
+  .then(data => data)
+  .then(location.reload()) 
 }
