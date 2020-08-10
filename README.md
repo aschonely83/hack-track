@@ -1,24 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hack Track is a single page application intended to be used as a way to keep track of golf courses and your score after each round. You are able to add courses.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+It uses a rails API backend and a frontend consisting of HTML, CSS, and JavaScript.
