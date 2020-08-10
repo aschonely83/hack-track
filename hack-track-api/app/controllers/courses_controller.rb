@@ -9,4 +9,17 @@ class CoursesController < ApplicationController
     course = Course.find(params[:id])
     render json: CourseSerializer.new(activity)
   end
+
+  def create
+    course = Course.create(course_params)
+    if course.save
+      render json: CourseSerializer.new(course)
+    end
+  end
+
+  private
+
+  def course_params
+    params.permit(:name)
+  end
 end
