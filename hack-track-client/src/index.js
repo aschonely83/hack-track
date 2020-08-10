@@ -8,14 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
   getCourses();
   renderCourses();
   
-  const addFormHole = document.querySelectorAll("#hole-form");
+  
+  const addCourse = document.querySelector("#add-course-form");
 
-  addFormHole.addEventListener("submit", (e) => {
-    e.preventDefault()
-    console.log(e);
-  })
+  addCourse.addEventListener("submit", (e) => {
+    
+    createCourses(e);
+  });
   
 })
+
 
 function getPlayers() {
   return fetch(PLAYERS_URL )
@@ -95,41 +97,41 @@ function getActivities() {
       const p = document.createElement('p')
       
 
-      const holeForm = document.createElement('form')
-      holeForm.id = "hole-form"
-      const timeInput = document.createElement('input')
-      timeInput.type = "text"
-      timeInput.name = "time_input"
-      timeInput.id = "time-input"
-      timeInput.placeholder = "Enter Tee Time"
-      const numbInput = document.createElement('input')
-      numbInput.type = "text"
-      numbInput.name = "numb_input"
-      numbInput.id = "numb-input"
-      numbInput.placeholder = "Enter Hole #"
-      const markerInput = document.createElement('input')
-      markerInput.type = "text"
-      markerInput.name = "marker_input"
-      markerInput.id = "marker-input"
-      markerInput.placeholder = "Enter Tee Marker"
-      const parInput = document.createElement('input')
-      parInput.type = "par"
-      parInput.name = "par_input"
-      parInput.id = "par-input"
-      parInput.placeholder = "Enter Par"
-      const scoreInput = document.createElement('input')
-      scoreInput.type = "text"
-      scoreInput.name = "score_input"
-      scoreInput.id = "score-input"
-      scoreInput.placeholder = "Enter Score"
-      const submitBtn = document.createElement('button')
-      submitBtn.type = "submit"
-      submitBtn.classList.add("add")
-      submitBtn.textContent = "Add Hole"
-      holeForm.append(timeInput, numbInput, markerInput, parInput, scoreInput, submitBtn)
+      //const holeForm = document.createElement('form')
+      //holeForm.id = "hole-form"
+      //const timeInput = document.createElement('input')
+      //timeInput.type = "text"
+      //timeInput.name = "time_input"
+      //timeInput.id = "time-input"
+      //timeInput.placeholder = "Enter Tee Time"
+      //const numbInput = document.createElement('input')
+      //numbInput.type = "text"
+      //numbInput.name = "numb_input"
+      //numbInput.id = "numb-input"
+      //numbInput.placeholder = "Enter Hole #"
+      //const markerInput = document.createElement('input')
+      //markerInput.type = "text"
+      //markerInput.name = "marker_input"
+      //markerInput.id = "marker-input"
+      //markerInput.placeholder = "Enter Tee Marker"
+      //const parInput = document.createElement('input')
+      //parInput.type = "par"
+      //parInput.name = "par_input"
+      //parInput.id = "par-input"
+      //parInput.placeholder = "Enter Par"
+      //const scoreInput = document.createElement('input')
+      //scoreInput.type = "text"
+      //scoreInput.name = "score_input"
+      //scoreInput.id = "score-input"
+      //scoreInput.placeholder = "Enter Score"
+      //const submitBtn = document.createElement('button')
+      //submitBtn.type = "submit"
+      //submitBtn.classList.add("add")
+      //submitBtn.textContent = "Add Hole"
+      //holeForm.append(timeInput, numbInput, markerInput, parInput, scoreInput, submitBtn)
             
       div.append(div1)
-      div.append(p,holeForm)
+      div.append(p)
       div.setAttribute('class', "activity-card")
       div.setAttribute("data-id", `${activity.id}`)
       p.textContent = `Tee Time: ${activity.attributes.tee_time}
@@ -144,23 +146,22 @@ function getActivities() {
  })
 }
 
-function createActivities(id, event) {
-  const form = event.target
-  fetch(`http://localhost:3000"/courses/${id}/activities`, {
-    method: "POST",
+function createCourses(e) {
+  e.preventDefault();
+  const form = e.target;
+  debugger
+  fetch(COURSES_URL, {
+    method: 'POST',
     headers: {
-      "Content-Type": 'application/json',
-      "Accept": 'application/json'
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
     },
     body: JSON.stringify({
-      tee_time: form.time_input.value,
-      hole_numb: form.numb_input.value,
-      tee_marker: form.marker_input.value,
-      par: form.par_input.value,
-      score: form.score_input.value
+      name: form.name.value
+      
     })
   })
   .then(resp => resp.json())
   .then(data => data)
-  .then(location.reload()) 
+  .then(location.reload());
 }
