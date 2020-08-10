@@ -10,20 +10,20 @@ class ActivitiesController < ApplicationController
     render json: ActivitySerializer.new(activity)
   end
 
-  def create
-    if params[:course_id]
-      course = Course.find(params[:course_id])
-      activity = course.activities.build(activity_params)
-      #binding.pry
-      if activity.save
-        render json: ActivitySerializer.new(activity)
-      end
-    end
-  end
+  #def create
+  #  if params[:course_id]
+  #    course = Course.find(params[:course_id])
+  #    activity = course.activities.build(activity_params)
+  #    #binding.pry
+  #    if activity.save
+  #      render json: ActivitySerializer.new(activity)
+  #    end
+  #  end
+  #end
 
-  private
-
-  def activity_params
-    params.permit(:tee_time, :hole_numb, :tee_marker, :par, :score, :course_id)
-  end
+  #private
+  #
+  #def activity_params
+  #  params.permit(:tee_time, :hole_numb, :tee_marker, :par, :score, :course_id)
+  #end
 end
