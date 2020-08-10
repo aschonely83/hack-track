@@ -1,6 +1,10 @@
 .flex-container {
     display: flex;
+    justify-content: center;
 }
 .container {
     padding: 10px;
+}
+h2 {
+    text-align: center;
 }
