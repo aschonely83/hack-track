@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
   getCourses();
   renderCourses();
   
+  const addFormHole = document.querySelectorAll("#hole-form");
+
+  addFormHole.addEventListener("submit", (e) => {
+    e.preventDefault()
+    console.log(e);
+  })
   
 })
 
