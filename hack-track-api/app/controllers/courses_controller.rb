@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
 
   def show
     course = Course.find(params[:id])
-    render json: CourseSerializer.new(activity)
+    render json: CourseSerializer.new(course)
   end
 
   def create
