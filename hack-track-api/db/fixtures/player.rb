@@ -7,11 +7,11 @@ Player.seed(:id,
 )
 
 Course.seed(:id, 
-  { :id => 1, :name => "Twin Ponds" },
+  { :id => 4, :name => "Bella Vista" },
   { :id => 2, :name => "Blackwood" },
   { :id => 3, :name => "Gilbertsville" },
-  { :id => 4, :name => "Bella Vista" },
-  { :id => 5, :name => "Turtle Creek" }  
+  { :id => 5, :name => "Turtle Creek" },
+  { :id => 1, :name => "Twin Ponds" }  
 )
 
 Activity.seed(:id, 
