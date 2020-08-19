@@ -1,8 +1,8 @@
 class Player {
   
-  constructor(data) {
-    this.id = data.id
-    this.name = data.name
+  constructor(id, name) {
+    this.id = id
+    this.name = name
     Player.all.push(this)    
   }    
 }

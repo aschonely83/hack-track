@@ -1,8 +1,8 @@
 class Course {
   
-  constructor(data) {
-    this.id = data.id
-    this.name = data.name
+  constructor(id, name) {
+    this.id = id
+    this.name = name
     Course.all.push(this)    
   }    
 }

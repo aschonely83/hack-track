@@ -1,12 +1,12 @@
 class Activity {
  
-  constructor(data) {
-    this.tee_time = data.tee_time
-    this.hole_numb = data.hole_numb    
-    this.tee_marker = data.tee_marker
-    this.par = data.par
-    this.score = data.score
-    this .course_id = data.course_id
+  constructor(tee_time, hole_numb, tee_marker, par, score,course_id) {
+    this.tee_time = tee_time
+    this.hole_numb = hole_numb    
+    this.tee_marker = tee_marker
+    this.par = par
+    this.score = score
+    this .course_id = course_id
     //this.player_id = data.player_id
     Activity.call.push(this)
   }    
