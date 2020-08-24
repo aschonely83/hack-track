@@ -11,9 +11,12 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    activity = Activity.new(activity_params)
+    if params[:course_id]
+      course = Course.find(params[:course_id])
+      activity = Activity.new(activity_params)
     if activity.save
       render json: ActivitySerializer.new(activity)
+     end
     end
   end
   private
