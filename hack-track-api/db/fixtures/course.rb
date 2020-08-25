@@ -3,5 +3,5 @@ Course.seed(:id,
 )
 
 Activity.seed(:id, 
-  { :id => 1, player_id: 1, course_id: 1, :tee_time => "7:00am", :hole_numb => "1", :tee_marker => "white", :par => "5", :score => "5" }
+  { :id => 1, course_id: 1, :tee_time => "7:00am", :hole_numb => "1", :tee_marker => "white", :par => "5", :score => "5" }
 )

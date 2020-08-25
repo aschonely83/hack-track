@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_27_174741) do
+ActiveRecord::Schema.define(version: 2020_08_25_192314) do
 
   create_table "activities", force: :cascade do |t|
-    t.integer "player_id"
     t.integer "course_id"
     t.string "tee_time"
     t.string "hole_numb"
@@ -25,12 +24,6 @@ ActiveRecord::Schema.define(version: 2020_07_27_174741) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "players", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
