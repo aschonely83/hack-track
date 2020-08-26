@@ -1,26 +1,40 @@
 BASE_URL = "http://localhost:3000"
-ACTIVITY_URL = `${BASE_URL}/activities`
+COURSES_URL = `${BASE_URL}/courses`
+ACTIVITIES_URL = `${BASE_URL}/activities`
 
 document.addEventListener("DOMContentLoaded", () => {
- 
+  
+  getCourse();
   getActivity();
     
 });
 
+function getCourse() {
+  fetch(COURSES_URL)
+  .then(resp => resp.json())
+  .then(courses => {
+    courses.data.forEach(course => {
+      
+      let newCourse = new Course(course, course.attributes)
+    
+      document.querySelector('.activity-container').innerHTML += newCourse.renderCourseCard()
+   })
+  })
+}
+
 function getActivity() {
-  fetch(ACTIVITY_URL)
+  fetch(ACTIVITIES_URL)
   .then(resp => resp.json())
   .then(activities => {
     activities.data.forEach(activity => {
-      
+     
       let newActivity = new Activity(activity, activity.attributes)
     
       document.querySelector('.activity-container').innerHTML += newActivity.renderActivityCard()
 
-      const addActivity = document.getElementById("activity-form")
-      addActivity.addEventListener("submit", (e) => createForm(e))
-
     })
+    const addActivity = document.getElementById("activity-form")
+      addActivity.addEventListener("submit", (e) => createForm(e))
   })
 }
 
@@ -28,15 +42,21 @@ function createForm(e) {
   e.preventDefault()
   
   const formData = document.getElementById("activity-form")
-  const holeInput = formData.attributes[0].ownerElement[0].value
-  const scoreInput = formData.attributes[0].ownerElement[1].value
-  const courseId = formData.attributes[0].ownerElement[2].id
-  
+  const newTeeTime = formData.attributes[0].ownerElement[0].value
+  const hole = formData.attributes[0].ownerElement[1].value
+  const teeMarker = formData.attributes[0].ownerElement[2].value
+  const par = formData.attributes[0].ownerElement[3].value
+  const score = formData.attributes[0].ownerElement[4].value
+  const courseId = formData.attributes[0].ownerElement[5].id
+  debugger
   const activityData = {
-    hole: holeInput,
-    score: scoreInput,
-    course_id: courseId
-  }
+      tee_time: newTeeTime,
+      hole_numb: hole,
+      tee_marker: teeMarker,
+      par: par,
+      score: score,
+      course_id: courseId
+    }
   const configObj = {
     method: "POST",
     headers: {
@@ -46,7 +66,7 @@ function createForm(e) {
     body: JSON.stringify(activityData)
   }
 
-  fetch(ACTIVITY_URL, configObj)
+  fetch("http://localhost:3000/courses/:course_id/activities", configObj)
   .then(function(resp) {
     return resp.json()
   })
